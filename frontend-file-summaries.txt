@@ -1,0 +1,21 @@
+{
+  "frontend/src/App.tsx": "Main application component that sets up TanStack Router with routes for homepage, SmartQR landing page, NFC offer page, and download page, wrapped in QueryClientProvider.",
+  "frontend/src/components/Layout.tsx": "Layout wrapper component that provides consistent header and footer across all pages using Outlet for nested routing.",
+  "frontend/src/components/Header.tsx": "Sticky header component with idmetech branding and navigation links to Home, SmartQR, and Download pages.",
+  "frontend/src/components/Footer.tsx": "Footer component displaying copyright notice and attribution to caffeine.ai with a heart icon.",
+  "frontend/src/pages/HomePage.tsx": "Homepage component featuring an intro section for SmartQR with static content including tagline, description, product image, and \"Learn More\" CTA button that navigates to the landing page.",
+  "frontend/src/pages/LandingPage.tsx": "Full SmartQR landing page with static content including hero section, features grid with three key benefits, product preview section, and NFC upgrade CTA with a button linking to the new NFC offer page.",
+  "frontend/src/hooks/useQueries.ts": "Minimal query hooks file with placeholder structure for future backend integration, currently only provides a backend readiness check since the backend only includes blob storage.",
+  "frontend/src/index.css": "Global styles with OKLCH color system featuring a modern purple/blue tech palette for both light and dark modes.",
+  "frontend/tailwind.config.js": "Tailwind configuration extending the default theme with custom colors, border radius, shadows, and animations.",
+  "frontend/public/index.html": "Static homepage HTML file with hero section, SmartQR introduction, product mockup image, and \"Learn More\" CTA button, now enhanced with mobile navigation toggle and references to index.js for interactive functionality.",
+  "frontend/public/smartqr.html": "Static landing page HTML file that links to external index.css stylesheet, showcasing SmartQR features, hero section, product preview, and NFC upgrade CTA.",
+  "frontend/src/pages/DownloadPage.tsx": "Download page component displaying only the latest version (V14) of each file type (HTML with refined icon sizing, CSS with responsive clamp() rules, JS, images) with clear version labels, automatic cleanup of outdated versions, sequential download functionality, and detailed deployment instructions.",
+  "frontend/src/pages/NfcOfferPage.tsx": "New NFC card special offer page featuring hero section with \"One-Tap Contact Sharing\" messaging, special offer section with $4.95 pricing and product details, and bonus section highlighting the free SmartQR app for all users.",
+  "frontend/public/nfc-card-offer.html": "Static NFC card special offer HTML file that links to external index.css stylesheet, featuring hero section, special offer details with $4.95 pricing, and bonus section.",
+  "frontend/public/index.css": "Global CSS stylesheet containing OKLCH color system, responsive layout rules, typography, animations, and styles for all SmartQR static HTML pages including mobile navigation support.",
+  "frontend/public/index.js": "Vanilla JavaScript file providing mobile navigation toggle, smooth scrolling, scroll animations, button/card hover effects, and animated gradient backgrounds for the static homepage.",
+  "frontend/public/index_updated.html": "Enhanced static homepage with full SmartQR design including hero section, features grid, product showcase, CTA section, and footer, using relative paths (css/index.css and js/index.js) for proper deployment structure.",
+  "frontend/public/css/index.css": "Global CSS stylesheet with OKLCH color system, refined icon sizing rules using clamp() functions and responsive media queries for proportional scaling across all icon types (logo, badge, button, feature, bonus), comprehensive layout rules, typography, and animations for all SmartQR static HTML pages.",
+  "frontend/public/js/index.js": "Vanilla JavaScript file providing mobile navigation toggle, smooth scrolling, scroll animations for all page sections, button/card hover effects, and animated gradient backgrounds for the static homepage."
+}
