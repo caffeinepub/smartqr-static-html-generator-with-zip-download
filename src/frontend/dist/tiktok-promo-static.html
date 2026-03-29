@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartQR — Free TikTok Promo</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 16px;
+    }
+    .tip-banner {
+      margin-bottom: 16px;
+      padding: 8px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(234,179,8,0.4);
+      background: rgba(234,179,8,0.1);
+      color: #fde68a;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+    }
+    .phone {
+      position: relative;
+      width: 390px;
+      height: 844px;
+      max-width: 95vw;
+      max-height: 80vh;
+      border-radius: 40px;
+      border: 4px solid #334155;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+    }
+    .scene {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 32px;
+      text-align: center;
+      transition: opacity 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .scene.active { opacity: 1; pointer-events: auto; }
+    .scene-1 { background: linear-gradient(to bottom, #020617, #0f172a); }
+    .scene-2 { background: linear-gradient(to bottom, #020617, #1e1b4b); }
+    .scene-3 { background: linear-gradient(to bottom, #020617, #042f2e); }
+    .scene-4 { background: linear-gradient(to bottom, #020617, #422006); }
+    .scene-5 { background: linear-gradient(to bottom, #020617, #083344); }
+    .emoji { font-size: clamp(3rem,12vw,4.5rem); }
+    .headline {
+      font-size: clamp(2rem,8vw,3rem);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    .headline-burst {
+      font-size: clamp(2.4rem,10vw,3.8rem);
+      font-weight: 900;
+      color: #fbbf24;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      text-shadow: 0 0 40px rgba(251,191,36,0.8);
+    }
+    .subtext {
+      font-size: clamp(0.9rem,3.5vw,1.15rem);
+      color: rgba(255,255,255,0.65);
+      font-weight: 500;
+    }
+    .qr-icon {
+      width: 84px;
+      height: 84px;
+      background: white;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 30px 6px rgba(99,102,241,0.5);
+    }
+    .cta-btn {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 14px 32px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #06b6d4, #6366f1);
+      color: white;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      box-shadow: 0 0 24px 4px rgba(99,102,241,0.5);
+    }
+    .shimmer-text {
+      background: linear-gradient(90deg, #fff 25%, #22d3ee 50%, #fff 75%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 2s linear infinite;
+      font-size: clamp(1.5rem,5.5vw,2.4rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    /* Word reveal */
+    .word { display: inline-block; margin: 0 6px; opacity: 0; transform: translateY(20px); transition: opacity 0.35s, transform 0.35s; }
+    .word.show { opacity: 1; transform: translateY(0); }
+    /* Confetti */
+    .confetti-wrap { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .confetti-piece {
+      position: absolute;
+      top: -10px;
+      border-radius: 2px;
+    }
+    /* Dots */
+    .dots {
+      position: absolute;
+      bottom: 96px;
+      left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+    }
+    .dot {
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.3);
+      width: 6px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s;
+    }
+    .dot.active { width: 20px; background: #22d3ee; }
+    /* Progress bar */
+    .progress-wrap {
+      position: absolute;
+      bottom: 64px;
+      left: 24px; right: 24px;
+      height: 4px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: #22d3ee;
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.05s linear;
+    }
+    /* Controls */
+    .controls {
+      position: absolute;
+      bottom: 20px;
+      left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+    .btn {
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.12);
+      color: white;
+      backdrop-filter: blur(6px);
+    }
+    .btn-primary { background: #06b6d4; border-color: #06b6d4; }
+    /* Instructions */
+    .instructions {
+      margin-top: 24px;
+      max-width: 340px;
+      color: #94a3b8;
+      font-size: 13px;
+      text-align: center;
+    }
+    .instructions strong { color: #e2e8f0; }
+    .instructions ol { text-align: left; margin-top: 6px; padding-left: 16px; }
+    .instructions li { margin-bottom: 4px; }
+    /* Animations */
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes burstIn {
+      0% { opacity: 0; transform: scale(0.3) rotate(-5deg); }
+      60% { transform: scale(1.08) rotate(1deg); }
+      100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+    @keyframes floatQR {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    @keyframes confettiFall {
+      0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(800px) rotate(720deg); opacity: 0; }
+    }
+    .anim-slideup { animation: slideUp 0.55s ease both; }
+    .anim-burst { animation: burstIn 0.7s cubic-bezier(0.34,1.56,0.64,1) both; }
+    .anim-floatqr { animation: floatQR 2s ease-in-out infinite; }
+  </style>
+</head>
+<body>
+  <div class="tip-banner">🎬 Screen-record this to create your TikTok!</div>
+
+  <div class="phone" id="phone">
+    <!-- Scene 1 -->
+    <div class="scene scene-1 active" id="scene-0">
+      <div class="emoji">👋</div>
+      <h2 class="headline">Meet SmartQR</h2>
+      <p class="subtext">Your digital contact, always ready</p>
+    </div>
+    <!-- Scene 2 -->
+    <div class="scene scene-2" id="scene-1">
+      <div class="emoji">⚡</div>
+      <div class="qr-icon">
+        <svg width="56" height="56" viewBox="0 0 64 64" fill="none">
+          <rect x="4" y="4" width="24" height="24" rx="3" fill="#1e293b"/>
+          <rect x="8" y="8" width="16" height="16" rx="2" fill="white"/>
+          <rect x="11" y="11" width="10" height="10" rx="1" fill="#1e293b"/>
+          <rect x="36" y="4" width="24" height="24" rx="3" fill="#1e293b"/>
+          <rect x="40" y="8" width="16" height="16" rx="2" fill="white"/>
+          <rect x="43" y="11" width="10" height="10" rx="1" fill="#1e293b"/>
+          <rect x="4" y="36" width="24" height="24" rx="3" fill="#1e293b"/>
+          <rect x="8" y="40" width="16" height="16" rx="2" fill="white"/>
+          <rect x="11" y="43" width="10" height="10" rx="1" fill="#1e293b"/>
+          <rect x="36" y="36" width="6" height="6" rx="1" fill="#1e293b"/>
+          <rect x="46" y="36" width="6" height="6" rx="1" fill="#1e293b"/>
+          <rect x="56" y="36" width="6" height="6" rx="1" fill="#1e293b"/>
+          <rect x="36" y="46" width="6" height="6" rx="1" fill="#1e293b"/>
+          <rect x="46" y="56" width="6" height="6" rx="1" fill="#1e293b"/>
+          <rect x="56" y="56" width="6" height="6" rx="1" fill="#1e293b"/>
+        </svg>
+      </div>
+      <h2 class="headline">Share your contact<br/>in seconds</h2>
+      <p class="subtext">One scan. Instant connection.</p>
+    </div>
+    <!-- Scene 3 -->
+    <div class="scene scene-3" id="scene-2">
+      <div class="emoji">📱</div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px 12px;">
+        <span class="word" style="font-size:clamp(1.8rem,7vw,3rem);font-weight:900;color:white;">No</span>
+        <span class="word" style="font-size:clamp(1.8rem,7vw,3rem);font-weight:900;color:white;">app</span>
+        <span class="word" style="font-size:clamp(1.8rem,7vw,3rem);font-weight:900;color:white;">needed.</span>
+        <span class="word" style="font-size:clamp(1.8rem,7vw,3rem);font-weight:900;color:#2dd4bf;">Just</span>
+        <span class="word" style="font-size:clamp(1.8rem,7vw,3rem);font-weight:900;color:#2dd4bf;">scan.</span>
+      </div>
+      <p class="subtext">Works with every smartphone camera</p>
+    </div>
+    <!-- Scene 4 -->
+    <div class="scene scene-4" id="scene-3">
+      <div class="confetti-wrap" id="confetti"></div>
+      <div class="emoji" style="position:relative;z-index:1;">🎉</div>
+      <h2 class="headline-burst" style="position:relative;z-index:1;">It's 100% FREE</h2>
+      <p class="subtext" style="position:relative;z-index:1;">No subscriptions. No hidden fees. Forever free.</p>
+    </div>
+    <!-- Scene 5 -->
+    <div class="scene scene-5" id="scene-4">
+      <div class="emoji">🌐</div>
+      <div class="shimmer-text">Get yours at<br/>idmetech.com</div>
+      <p class="subtext">Start sharing smarter today →</p>
+      <a href="https://idmetech.com" target="_blank" class="cta-btn">Get SmartQR Free →</a>
+    </div>
+
+    <!-- Dots -->
+    <div class="dots" id="dots"></div>
+
+    <!-- Progress -->
+    <div class="progress-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button class="btn" id="restartBtn">↺ Restart</button>
+      <button class="btn btn-primary" id="playBtn">⏸ Pause</button>
+    </div>
+  </div>
+
+  <div class="instructions">
+    <strong>How to make your TikTok video:</strong>
+    <ol>
+      <li>Hit <strong>Play</strong> and start a screen recording</li>
+      <li>Let all 5 scenes loop through once</li>
+      <li>Stop recording — you have your promo clip!</li>
+      <li>Upload to TikTok, Reels, or Shorts 🚀</li>
+    </ol>
+  </div>
+
+  <script>
+    const SCENE_DURATION = 3500;
+    const scenes = document.querySelectorAll('.scene');
+    const dotsContainer = document.getElementById('dots');
+    const progressBar = document.getElementById('progressBar');
+    const playBtn = document.getElementById('playBtn');
+    const restartBtn = document.getElementById('restartBtn');
+    const confettiContainer = document.getElementById('confetti');
+
+    let current = 0;
+    let playing = true;
+    let intervalId = null;
+    let progressId = null;
+    let progressStart = null;
+
+    // Create dots
+    scenes.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => { goToScene(i); startInterval(); });
+      dotsContainer.appendChild(dot);
+    });
+
+    function getDots() { return dotsContainer.querySelectorAll('.dot'); }
+
+    function updateDots() {
+      getDots().forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+      });
+    }
+
+    function createConfetti() {
+      confettiContainer.innerHTML = '';
+      const colors = ['#f59e0b','#10b981','#6366f1','#ef4444','#ec4899','#14b8a6'];
+      for (let i = 0; i < 28; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        const size = 6 + (i % 5) * 2;
+        piece.style.cssText = `
+          left: ${10 + (i * 17) % 80}%;
+          width: ${size}px;
+          height: ${size}px;
+          background: ${colors[i % colors.length]};
+          border-radius: ${i % 3 === 0 ? '50%' : '2px'};
+          animation: confettiFall ${1.2 + (i % 5) * 0.2}s ease-in ${(i * 0.12) % 1.2}s both;
+          transform: rotate(${i * 45}deg);
+        `;
+        confettiContainer.appendChild(piece);
+      }
+    }
+
+    function revealWords(sceneEl) {
+      const words = sceneEl.querySelectorAll('.word');
+      words.forEach(w => { w.classList.remove('show'); });
+      words.forEach((w, i) => {
+        setTimeout(() => w.classList.add('show'), i * 400);
+      });
+    }
+
+    function applyAnimations(sceneEl, sceneIndex) {
+      const emoji = sceneEl.querySelector('.emoji');
+      const headline = sceneEl.querySelector('.headline, .headline-burst, .shimmer-text');
+      const subtext = sceneEl.querySelector('.subtext');
+      const qr = sceneEl.querySelector('.qr-icon');
+      const cta = sceneEl.querySelector('.cta-btn');
+
+      if (emoji) { emoji.style.animation = 'none'; void emoji.offsetWidth; emoji.style.animation = sceneIndex === 3 ? 'burstIn 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.1s both' : 'slideUp 0.5s ease 0.1s both'; }
+      if (headline && sceneIndex !== 2) { headline.style.animation = 'none'; void headline.offsetWidth; headline.style.animation = sceneIndex === 3 ? 'burstIn 0.7s cubic-bezier(0.34,1.56,0.64,1) 0.2s both' : (headline.classList.contains('shimmer-text') ? 'slideUp 0.55s ease 0.15s both, shimmer 2s linear 0.7s infinite' : 'slideUp 0.55s ease 0.15s both'); }
+      if (qr) { qr.style.animation = 'none'; void qr.offsetWidth; qr.style.animation = 'slideUp 0.5s ease 0.2s both, floatQR 2s ease-in-out 0.7s infinite'; }
+      if (subtext) { subtext.style.animation = 'none'; void subtext.offsetWidth; subtext.style.animation = 'slideUp 0.6s ease 0.45s both'; }
+      if (cta) { cta.style.animation = 'none'; void cta.offsetWidth; cta.style.animation = 'slideUp 0.65s ease 0.6s both'; }
+    }
+
+    function goToScene(index) {
+      scenes[current].classList.remove('active');
+      current = ((index % scenes.length) + scenes.length) % scenes.length;
+      const sceneEl = scenes[current];
+      sceneEl.classList.add('active');
+      updateDots();
+      applyAnimations(sceneEl, current);
+      if (current === 2) revealWords(sceneEl);
+      if (current === 3) createConfetti();
+      startProgress();
+    }
+
+    function startProgress() {
+      if (progressId) clearInterval(progressId);
+      progressBar.style.width = '0%';
+      progressStart = Date.now();
+      progressId = setInterval(() => {
+        const elapsed = Date.now() - progressStart;
+        const pct = Math.min((elapsed / SCENE_DURATION) * 100, 100);
+        progressBar.style.width = pct + '%';
+      }, 30);
+    }
+
+    function startInterval() {
+      if (intervalId) clearInterval(intervalId);
+      intervalId = setInterval(() => goToScene(current + 1), SCENE_DURATION);
+    }
+
+    function stopInterval() {
+      if (intervalId) clearInterval(intervalId);
+      if (progressId) clearInterval(progressId);
+    }
+
+    playBtn.addEventListener('click', () => {
+      playing = !playing;
+      if (playing) {
+        playBtn.textContent = '⏸ Pause';
+        startInterval();
+        startProgress();
+      } else {
+        playBtn.textContent = '▶ Play';
+        stopInterval();
+      }
+    });
+
+    restartBtn.addEventListener('click', () => {
+      stopInterval();
+      goToScene(0);
+      playing = true;
+      playBtn.textContent = '⏸ Pause';
+      startInterval();
+    });
+
+    // Initial setup
+    applyAnimations(scenes[0], 0);
+    startProgress();
+    startInterval();
+  </script>
+</body>
+</html>
