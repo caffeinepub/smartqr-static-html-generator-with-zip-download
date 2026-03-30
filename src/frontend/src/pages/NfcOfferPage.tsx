@@ -138,10 +138,17 @@ export default function NfcOfferPage() {
                     </div>
                   </div>
 
-                  <Button size="lg" className="group gap-2 text-base">
-                    Get My NFC Card
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
+                  <a
+                    href="https://buy.stripe.com/fZu3cuakm61n6oM5JubMQ00"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-ocid="nfc.primary_button"
+                  >
+                    <Button size="lg" className="group w-full gap-2 text-base">
+                      Get My NFC Card
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </a>
                 </div>
               </div>
             </Card>
