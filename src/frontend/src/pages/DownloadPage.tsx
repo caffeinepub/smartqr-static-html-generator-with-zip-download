@@ -21,7 +21,7 @@ import {
 import { useState } from "react";
 
 // Version management - only latest version displayed
-const CURRENT_VERSION = 18;
+const CURRENT_VERSION = 21;
 
 interface FileItem {
   name: string;
@@ -261,7 +261,7 @@ export default function DownloadPage() {
                     <Video className="h-5 w-5 text-cyan-500" />
                     <h3 className="font-medium">TikTok Promo</h3>
                     <span className="rounded-full bg-cyan-500/10 px-2 py-0.5 text-xs font-medium text-cyan-600">
-                      New in V18
+                      New in V21
                     </span>
                   </div>
                   <div className="space-y-2">
