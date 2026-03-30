@@ -7,11 +7,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useNavigate } from "@tanstack/react-router";
-import { ArrowRight, CreditCard, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, CreditCard, Sparkles, X, Zap } from "lucide-react";
+import { useState } from "react";
 
 export default function LandingPage() {
   const navigate = useNavigate();
+  const [popupOpen, setPopupOpen] = useState(false);
 
   const features = [
     {
@@ -62,7 +65,11 @@ export default function LandingPage() {
             </p>
 
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button size="lg" className="group gap-2 text-base">
+              <Button
+                size="lg"
+                className="group gap-2 text-base"
+                onClick={() => setPopupOpen(true)}
+              >
                 Get Started Free
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
@@ -244,6 +251,30 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Popup */}
+      <Dialog open={popupOpen} onOpenChange={setPopupOpen}>
+        <DialogContent className="p-0 overflow-hidden w-[95vw] max-w-3xl h-[80vh] flex flex-col">
+          <DialogTitle className="sr-only">Get SmartQR Free</DialogTitle>
+          <div className="flex items-center justify-between px-4 py-2 border-b bg-background">
+            <span className="text-sm font-medium text-muted-foreground">
+              idmetech.com/smartqr
+            </span>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setPopupOpen(false)}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
+          <iframe
+            src="https://idmetech.com/smartqr"
+            className="flex-1 w-full border-0"
+            title="Get SmartQR Free"
+          />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

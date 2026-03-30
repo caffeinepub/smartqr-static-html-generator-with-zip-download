@@ -5,14 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartQR - Upgrade Your Networking Game | idmetech</title>
     <meta name="description" content="SmartQR offers advanced contact sharing with real-time updates and NFC integration.">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        /* Popup overlay */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        .popup-overlay.active {
+            display: flex;
+        }
+        .popup-container {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            width: 95vw;
+            max-width: 900px;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+        }
+        .popup-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            border-bottom: 1px solid #e5e7eb;
+            background: #f9fafb;
+        }
+        .popup-header span {
+            font-size: 13px;
+            color: #6b7280;
+        }
+        .popup-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            color: #6b7280;
+            border-radius: 6px;
+            line-height: 1;
+        }
+        .popup-close:hover { background: #f3f4f6; color: #111; }
+        .popup-iframe {
+            flex: 1;
+            width: 100%;
+            border: none;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo">
+                <a href="index_updated.html" class="logo">
                     <div class="logo-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
@@ -21,7 +74,7 @@
                     <span>idmetech</span>
                 </a>
                 <nav>
-                    <a href="index.html">Home</a>
+                    <a href="index_updated.html">Home</a>
                     <a href="smartqr.html">SmartQR</a>
                 </nav>
             </div>
@@ -31,7 +84,7 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-background">
-            <img src="/assets/generated/hero-background.dim_1200x600.png" alt="">
+            <img src="assets/generated/hero-background.dim_1200x600.png" alt="">
             <div class="hero-overlay"></div>
         </div>
 
@@ -51,13 +104,13 @@
                 </p>
 
                 <div>
-                    <a href="#" class="button button-primary">
+                    <button onclick="document.getElementById('smartqrPopup').classList.add('active')" class="button button-primary">
                         Get Started Free
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                             <polyline points="12 5 19 12 12 19"></polyline>
                         </svg>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -142,7 +195,7 @@
                                 </svg>
                             </div>
                             <div class="feature-item-text">
-                                <p>Smart & Secure</p>
+                                <p>Smart &amp; Secure</p>
                                 <p>Your data is encrypted and protected</p>
                             </div>
                         </div>
@@ -151,7 +204,7 @@
 
                 <div class="product-card">
                     <div class="card">
-                        <img src="/assets/generated/smartqr-product-mockup.dim_800x600.png" alt="SmartQR Product Preview">
+                        <img src="assets/generated/smartqr-product-mockup.dim_800x600.png" alt="SmartQR Product Preview">
                     </div>
                 </div>
             </div>
@@ -169,7 +222,7 @@
             <div class="nfc-card">
                 <div class="nfc-grid">
                     <div class="nfc-image">
-                        <img src="/assets/generated/nfc-card-product.dim_400x300.png" alt="NFC Card">
+                        <img src="assets/generated/nfc-card-product.dim_400x300.png" alt="NFC Card">
                     </div>
 
                     <div class="nfc-content">
@@ -230,7 +283,7 @@
         <div class="container">
             <div class="footer-content">
                 <p>
-                    © 2025. Built with 
+                    &copy; 2025. Built with 
                     <svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                     </svg>
@@ -239,5 +292,28 @@
             </div>
         </div>
     </footer>
+
+    <!-- SmartQR Popup -->
+    <div id="smartqrPopup" class="popup-overlay">
+        <div class="popup-container">
+            <div class="popup-header">
+                <span>idmetech.com/smartqr</span>
+                <button class="popup-close" onclick="document.getElementById('smartqrPopup').classList.remove('active')" aria-label="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <iframe src="https://idmetech.com/smartqr" class="popup-iframe" title="SmartQR"></iframe>
+        </div>
+    </div>
+
+    <script src="js/index.js"></script>
+    <script>
+        document.getElementById('smartqrPopup').addEventListener('click', function(e) {
+            if (e.target === this) this.classList.remove('active');
+        });
+    </script>
 </body>
 </html>
