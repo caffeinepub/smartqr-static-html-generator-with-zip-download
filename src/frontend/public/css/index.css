@@ -84,157 +84,89 @@ body.loaded {
   padding: 0 1.5rem;
 }
 
-/* Icon Sizing Rules - Refined with Responsive Scaling */
+/* =============================================
+   SVG ICON SIZING — explicit defaults prevent
+   icons from stretching to page width
+   ============================================= */
+
+/* By default, SVGs without explicit attributes
+   get a safe 1em x 1em size */
 svg {
-  max-width: 100%;
-  height: auto;
   display: inline-block;
   vertical-align: middle;
-}
-
-/* Logo Icon Sizing - Responsive with clamp() */
-.logo-icon svg {
-  width: clamp(1rem, 1.25rem, 1.5rem);
-  height: clamp(1rem, 1.25rem, 1.5rem);
-  max-width: 1.5rem;
-  max-height: 1.5rem;
-  min-width: 1rem;
-  min-height: 1rem;
   flex-shrink: 0;
 }
 
-/* Mobile Menu Toggle Icon Sizing */
+/* Logo icon */
+.logo-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Mobile menu toggle */
 .mobile-menu-toggle svg {
   width: 1.5rem;
   height: 1.5rem;
-  max-width: 1.5rem;
-  max-height: 1.5rem;
-  min-width: 1.25rem;
-  min-height: 1.25rem;
-  flex-shrink: 0;
 }
 
-/* Badge Icon Sizing - Responsive */
+/* Badge icons */
 .badge svg,
 .badge-premium svg,
-.badge-special svg,
-.badge.with-icon svg {
-  width: clamp(0.875rem, 1rem, 1.125rem);
-  height: clamp(0.875rem, 1rem, 1.125rem);
-  max-width: 1.125rem;
-  max-height: 1.125rem;
-  min-width: 0.875rem;
-  min-height: 0.875rem;
-  flex-shrink: 0;
+.badge-special svg {
+  width: 1rem;
+  height: 1rem;
 }
 
-/* Button Icon Sizing - Responsive */
+/* Button icons */
 .button svg {
-  width: clamp(1rem, 1.25rem, 1.5rem);
-  height: clamp(1rem, 1.25rem, 1.5rem);
-  max-width: 1.5rem;
-  max-height: 1.5rem;
-  min-width: 1rem;
-  min-height: 1rem;
-  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
   transition: transform 0.2s ease;
 }
 
-/* Feature Icon Sizing - Responsive */
+/* Feature section icons */
 .feature-icon svg {
-  width: clamp(1.25rem, 1.5rem, 2rem);
-  height: clamp(1.25rem, 1.5rem, 2rem);
-  max-width: 2rem;
-  max-height: 2rem;
-  min-width: 1.25rem;
-  min-height: 1.25rem;
-  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
-/* Showcase Feature Item Icon Sizing */
-.showcase-feature-item svg {
-  width: 1.25rem;
-  height: 1.25rem;
-  max-width: 1.25rem;
-  max-height: 1.25rem;
-  min-width: 1rem;
-  min-height: 1rem;
-  flex-shrink: 0;
-}
-
-/* Feature Item Icon Sizing (for lists) */
+/* Checkmark icons inside feature/bonus lists */
+.showcase-feature-item svg,
 .feature-item-icon svg,
-.feature-item svg {
-  width: clamp(1rem, 1.25rem, 1.5rem);
-  height: clamp(1rem, 1.25rem, 1.5rem);
-  max-width: 1.5rem;
-  max-height: 1.5rem;
-  min-width: 1rem;
-  min-height: 1rem;
-  flex-shrink: 0;
-}
-
-/* Bonus Feature Icon Sizing - Responsive */
-.bonus-icon svg,
 .bonus-feature-icon svg {
-  width: clamp(1rem, 1.25rem, 1.5rem);
-  height: clamp(1rem, 1.25rem, 1.5rem);
-  max-width: 1.5rem;
-  max-height: 1.5rem;
-  min-width: 1rem;
-  min-height: 1rem;
-  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
-/* Heart Icon Sizing */
+/* Bonus section large icon */
+.bonus-icon svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Heart icon in footer */
 .heart-icon {
   width: 1rem;
   height: 1rem;
-  max-width: 1rem;
-  max-height: 1rem;
-  min-width: 0.875rem;
-  min-height: 0.875rem;
   flex-shrink: 0;
   color: oklch(var(--destructive));
   animation: heartbeat 1.5s ease-in-out infinite;
 }
 
-/* Responsive Icon Sizing for Mobile - Media Query Adjustments */
-@media (max-width: 640px) {
-  .feature-icon svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    max-width: 1.5rem;
-    max-height: 1.5rem;
-  }
-  
-  .bonus-icon svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    max-width: 2rem;
-    max-height: 2rem;
-  }
-  
-  .button svg {
-    width: 1.125rem;
-    height: 1.125rem;
-  }
+/* Popup close button */
+.popup-close svg {
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
-/* Tablet and larger screens - ensure icons don't grow too large */
-@media (min-width: 768px) {
-  .feature-icon svg {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-  
-  .bonus-icon svg {
-    width: 2rem;
-    height: 2rem;
-  }
+/* Hover effect on button arrows */
+.button:hover svg {
+  transform: translateX(4px);
 }
 
-/* Header Styles */
+/* =============================================
+   Header Styles
+   ============================================= */
 header {
   position: sticky;
   top: 0;
@@ -468,12 +400,6 @@ header.scrolled {
   width: fit-content;
 }
 
-.badge.with-icon {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
 h1 {
   font-size: 2.5rem;
   font-weight: 800;
@@ -538,10 +464,6 @@ h3 {
 
 .button-secondary:hover {
   background-color: oklch(var(--secondary) / 0.8);
-}
-
-.button:hover svg {
-  transform: translateX(4px);
 }
 
 .product-card {
@@ -609,7 +531,6 @@ h3 {
   border: 1px solid oklch(var(--border));
   border-radius: var(--radius);
   padding: 2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -766,12 +687,8 @@ footer {
 }
 
 @keyframes heartbeat {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
 footer a {
@@ -813,39 +730,15 @@ footer a:hover {
 }
 
 @media (min-width: 768px) {
-  h1 {
-    font-size: 3.5rem;
-  }
-  
-  h2 {
-    font-size: 2.5rem;
-  }
-  
-  .hero-description {
-    font-size: 1.25rem;
-  }
-  
-  .hero-section {
-    padding: 8rem 0;
-  }
-  
-  .features-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  h1 { font-size: 3.5rem; }
+  h2 { font-size: 2.5rem; }
+  .hero-description { font-size: 1.25rem; }
+  .hero-section { padding: 8rem 0; }
+  .features-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (min-width: 1024px) {
-  .hero-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-  }
-  
-  .showcase-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-  }
-  
-  h1 {
-    font-size: 4rem;
-  }
+  .hero-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .showcase-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  h1 { font-size: 4rem; }
 }
