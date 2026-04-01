@@ -175,15 +175,11 @@ export default function LandingPage() {
               </div>
 
               <div className="flex items-center justify-center">
-                <Card className="overflow-hidden border-2 shadow-2xl">
-                  <CardContent className="p-0">
-                    <img
-                      src="/assets/generated/smartqr-product-mockup.dim_800x600.png"
-                      alt="SmartQR Product Preview"
-                      className="h-auto w-full object-cover"
-                    />
-                  </CardContent>
-                </Card>
+                <img
+                  src="/assets/generated/smartqr-product-mockup-v2.dim_800x600.png"
+                  alt="SmartQR app on phone"
+                  className="w-full max-w-md rounded-2xl drop-shadow-2xl"
+                />
               </div>
             </div>
           </div>

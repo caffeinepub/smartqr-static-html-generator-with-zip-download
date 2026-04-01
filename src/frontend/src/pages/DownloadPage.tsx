@@ -21,7 +21,7 @@ import {
 import { useState } from "react";
 
 // Version management - only latest version displayed
-const CURRENT_VERSION = 22;
+const CURRENT_VERSION = 27;
 
 interface FileItem {
   name: string;
