@@ -44,47 +44,203 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Product Visual */}
-            <div className="flex flex-col items-center justify-center gap-6">
-              {/* Profile Picture */}
-              <div className="relative">
-                <div className="h-48 w-48 overflow-hidden rounded-full border-4 border-primary/20 shadow-2xl ring-4 ring-primary/10">
-                  <img
-                    src="/assets/generated/profile-business-person-transparent.dim_400x400.png"
-                    alt="SmartQR User"
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                {/* QR Code badge */}
-                <div className="absolute -bottom-4 -right-4 rounded-xl border-2 border-primary/20 bg-background p-1.5 shadow-lg">
-                  <img
-                    src="/assets/generated/smartqr-qrcode.dim_300x300.png"
-                    alt="SmartQR QR Code"
-                    className="h-16 w-16 rounded"
-                  />
-                </div>
-              </div>
+            {/* Phone Frame Visual */}
+            <div className="flex items-center justify-center">
+              {/* Phone outer shell */}
+              <div
+                style={{
+                  width: 260,
+                  minHeight: 520,
+                  borderRadius: 40,
+                  background:
+                    "linear-gradient(145deg, #1a2a4a 0%, #0f1c38 100%)",
+                  boxShadow:
+                    "0 0 0 2px #2d4a7a, 0 20px 60px rgba(10,20,50,0.45), inset 0 1px 0 rgba(255,255,255,0.08)",
+                  padding: "14px 10px 20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  position: "relative",
+                }}
+              >
+                {/* Top notch / speaker */}
+                <div
+                  style={{
+                    width: 60,
+                    height: 6,
+                    borderRadius: 4,
+                    background: "rgba(255,255,255,0.18)",
+                    marginBottom: 14,
+                  }}
+                />
 
-              {/* Icons row */}
-              <div className="flex items-center gap-6 mt-6">
-                <div className="flex flex-col items-center gap-1.5">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <Phone className="h-5 w-5" />
+                {/* Screen area */}
+                <div
+                  style={{
+                    width: "100%",
+                    borderRadius: 28,
+                    background: "#f0f4f8",
+                    padding: "18px 14px 20px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: 14,
+                    flex: 1,
+                  }}
+                >
+                  {/* Profile Photo */}
+                  <div
+                    style={{
+                      width: 130,
+                      height: 130,
+                      borderRadius: "50%",
+                      overflow: "hidden",
+                      border: "3px solid #1a2a4a",
+                      boxShadow: "0 4px 16px rgba(26,42,74,0.25)",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <img
+                      src="/assets/generated/profile-business-person-transparent.dim_400x400.png"
+                      alt="SmartQR User"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
                   </div>
-                  <span className="text-xs text-muted-foreground">Call</span>
-                </div>
-                <div className="flex flex-col items-center gap-1.5">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <Mail className="h-5 w-5" />
+
+                  {/* Name + title placeholder */}
+                  <div style={{ textAlign: "center", lineHeight: 1.3 }}>
+                    <div
+                      style={{
+                        fontWeight: 700,
+                        fontSize: 15,
+                        color: "#1a2a4a",
+                      }}
+                    >
+                      Jane Smith
+                    </div>
+                    <div style={{ fontSize: 11, color: "#5a7090" }}>
+                      Business Professional
+                    </div>
                   </div>
-                  <span className="text-xs text-muted-foreground">Email</span>
-                </div>
-                <div className="flex flex-col items-center gap-1.5">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <Share2 className="h-5 w-5" />
+
+                  {/* QR Code — 70% of photo width = ~91px, shown larger for visual impact */}
+                  <div
+                    style={{
+                      width: 100,
+                      height: 100,
+                      borderRadius: 10,
+                      overflow: "hidden",
+                      border: "2px solid #1a2a4a",
+                      background: "white",
+                      flexShrink: 0,
+                      boxShadow: "0 2px 10px rgba(26,42,74,0.18)",
+                    }}
+                  >
+                    <img
+                      src="/assets/generated/smartqr-qr-navy.dim_300x300.png"
+                      alt="SmartQR QR Code"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
                   </div>
-                  <span className="text-xs text-muted-foreground">Share</span>
+
+                  {/* 3 icon buttons */}
+                  <div style={{ display: "flex", gap: 18, marginTop: 2 }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        gap: 4,
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: 40,
+                          height: 40,
+                          borderRadius: "50%",
+                          background: "#1a2a4a",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Phone size={16} color="white" />
+                      </div>
+                      <span style={{ fontSize: 9, color: "#5a7090" }}>
+                        Call
+                      </span>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        gap: 4,
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: 40,
+                          height: 40,
+                          borderRadius: "50%",
+                          background: "#1a2a4a",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Mail size={16} color="white" />
+                      </div>
+                      <span style={{ fontSize: 9, color: "#5a7090" }}>
+                        Email
+                      </span>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        gap: 4,
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: 40,
+                          height: 40,
+                          borderRadius: "50%",
+                          background: "#1a2a4a",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Share2 size={16} color="white" />
+                      </div>
+                      <span style={{ fontSize: 9, color: "#5a7090" }}>
+                        Share
+                      </span>
+                    </div>
+                  </div>
                 </div>
+
+                {/* Home button area */}
+                <div
+                  style={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: "50%",
+                    border: "2px solid rgba(255,255,255,0.2)",
+                    marginTop: 12,
+                  }}
+                />
               </div>
             </div>
           </div>
