@@ -21,7 +21,7 @@ import {
 import { useState } from "react";
 
 // Version management - only latest version displayed
-const CURRENT_VERSION = 27;
+const CURRENT_VERSION = 28;
 
 interface FileItem {
   name: string;
@@ -94,9 +94,14 @@ export default function DownloadPage() {
       zipPath: "generated/nfc-card-product.dim_400x300.png",
     },
     {
-      name: "smartqr-product-mockup.dim_800x600.png",
-      path: "/assets/generated/smartqr-product-mockup.dim_800x600.png",
-      zipPath: "generated/smartqr-product-mockup.dim_800x600.png",
+      name: "smartqr-product-mockup-v2.dim_800x600.png",
+      path: "/assets/generated/smartqr-product-mockup-v2.dim_800x600.png",
+      zipPath: "generated/smartqr-product-mockup-v2.dim_800x600.png",
+    },
+    {
+      name: "nfc-mycard-enhanced.dim_600x400.png",
+      path: "/assets/generated/nfc-mycard-enhanced.dim_600x400.png",
+      zipPath: "generated/nfc-mycard-enhanced.dim_600x400.png",
     },
   ];
 
