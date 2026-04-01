@@ -29,6 +29,12 @@ export default function Header() {
             SmartQR
           </Link>
           <Link
+            to="/print-card"
+            className="text-sm font-medium transition-colors hover:text-primary [&.active]:text-primary"
+          >
+            Print Cards
+          </Link>
+          <Link
             to="/download"
             className="text-sm font-medium transition-colors hover:text-primary [&.active]:text-primary"
           >

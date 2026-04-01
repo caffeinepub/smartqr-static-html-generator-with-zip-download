@@ -27,7 +27,9 @@ export default function LandingPage() {
     },
     {
       title: "NFC Card Integration",
-      description: "Upgrade to NFC for seamless contact sharing",
+      description:
+        "Add an NFC Card to accommodate users with a tap. Special price now:",
+      cta: true,
     },
   ];
 
@@ -35,7 +37,6 @@ export default function LandingPage() {
     <div className="relative">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 md:py-32">
-        {/* Hero Background */}
         <div className="absolute inset-0 -z-10">
           <img
             src="/assets/generated/hero-background.dim_1200x600.png"
@@ -56,12 +57,12 @@ export default function LandingPage() {
             </Badge>
 
             <h1 className="mb-6 text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
-              Upgrade Your Networking Game
+              Upgrade Your Contact Sharing
             </h1>
 
             <p className="mb-10 text-xl text-muted-foreground md:text-2xl">
-              SmartQR offers advanced contact sharing with real-time updates and
-              NFC integration.
+              SmartQR is only 1 click on the phone in your hand away from a
+              successful and rewarding sharing of information while networking.
             </p>
 
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -113,6 +114,17 @@ export default function LandingPage() {
                       <CardDescription className="text-base">
                         {feature.description}
                       </CardDescription>
+                      {feature.cta && (
+                        <a
+                          href="https://buy.stripe.com/fZu3cuakm61n6oM5JubMQ00"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-3 inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                        >
+                          Get NFC Card — $4.95
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </a>
+                      )}
                     </CardContent>
                   </Card>
                 );
@@ -189,8 +201,8 @@ export default function LandingPage() {
               <div className="grid gap-8 lg:grid-cols-2">
                 <div className="flex items-center justify-center p-8 lg:p-12">
                   <img
-                    src="/assets/generated/nfc-card-product.dim_400x300.png"
-                    alt="NFC Card"
+                    src="/assets/generated/nfc-mycard-enhanced.dim_600x400.png"
+                    alt="NFC My Card"
                     className="h-auto w-full max-w-sm rounded-lg object-cover shadow-lg"
                   />
                 </div>
@@ -222,15 +234,15 @@ export default function LandingPage() {
                   <div className="space-y-3">
                     <div className="flex items-center gap-2 text-sm">
                       <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                      <span>Premium metal card design</span>
+                      <span>Premium PVC card design</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
                       <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                      <span>Works with any smartphone</span>
+                      <span>Works with any NFC-enabled smartphone</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
                       <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                      <span>Lifetime updates included</span>
+                      <span>Unlimited updates included</span>
                     </div>
                   </div>
 

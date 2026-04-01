@@ -1,22 +1,21 @@
-import { Heart } from "lucide-react";
-
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="border-t border-border/40 bg-muted/30">
       <div className="container py-8">
-        <div className="flex flex-col items-center justify-center gap-4 text-center">
+        <div className="flex flex-col items-center justify-center gap-2 text-center">
           <p className="text-sm text-muted-foreground">
-            © 2025. Built with{" "}
-            <Heart className="inline h-4 w-4 fill-destructive text-destructive" />{" "}
-            using{" "}
+            © {year}{" "}
             <a
-              href="https://caffeine.ai"
+              href="https://idmetech.com"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-foreground underline-offset-4 transition-colors hover:text-primary hover:underline"
             >
-              caffeine.ai
-            </a>
+              IdMeTech.com
+            </a>{" "}
+            · All rights reserved.
           </p>
         </div>
       </div>

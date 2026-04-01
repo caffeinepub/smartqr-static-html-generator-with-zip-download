@@ -14,7 +14,6 @@ export default function NfcOfferPage() {
     <div className="relative">
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 md:py-32">
-        {/* Hero Background */}
         <div className="absolute inset-0 -z-10">
           <img
             src="/assets/generated/hero-background.dim_1200x600.png"
@@ -35,7 +34,7 @@ export default function NfcOfferPage() {
             </Badge>
 
             <h1 className="mb-6 text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl">
-              NFC Digital Business Card Special Offer
+              Get Your NFC &ldquo;My&rdquo; Card Today
             </h1>
 
             <p className="mb-4 text-2xl font-semibold text-primary md:text-3xl">
@@ -61,8 +60,8 @@ export default function NfcOfferPage() {
               <div className="grid gap-8 lg:grid-cols-2">
                 <div className="flex items-center justify-center bg-gradient-to-br from-muted/30 to-muted/10 p-8 lg:p-12">
                   <img
-                    src="/assets/generated/nfc-card-product.dim_400x300.png"
-                    alt="NFC Digital Business Card"
+                    src="/assets/generated/nfc-mycard-enhanced.dim_600x400.png"
+                    alt="NFC My Card"
                     className="h-auto w-full max-w-sm rounded-lg object-cover shadow-2xl"
                   />
                 </div>
@@ -74,14 +73,14 @@ export default function NfcOfferPage() {
                       Limited Time Offer
                     </Badge>
                     <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-                      Get Your NFC Card Today
+                      Get Your NFC &ldquo;My&rdquo; Card Today
                     </h2>
                     <div className="mb-6 flex items-baseline gap-2">
                       <span className="text-5xl font-bold text-primary">
                         $4.95
                       </span>
                       <span className="text-lg text-muted-foreground">
-                        covers shipping & handling
+                        covers shipping &amp; handling
                       </span>
                     </div>
                     <p className="text-lg text-muted-foreground">
@@ -121,7 +120,7 @@ export default function NfcOfferPage() {
                       <div>
                         <p className="font-medium">Premium Quality</p>
                         <p className="text-sm text-muted-foreground">
-                          Durable metal card with professional finish
+                          Durable PVC card with branded finish
                         </p>
                       </div>
                     </div>
@@ -130,7 +129,7 @@ export default function NfcOfferPage() {
                         <Check className="h-3.5 w-3.5" />
                       </div>
                       <div>
-                        <p className="font-medium">Lifetime Updates</p>
+                        <p className="font-medium">Unlimited Updates</p>
                         <p className="text-sm text-muted-foreground">
                           Update your contact info anytime through SmartQR
                         </p>
@@ -142,7 +141,6 @@ export default function NfcOfferPage() {
                     href="https://buy.stripe.com/fZu3cuakm61n6oM5JubMQ00"
                     target="_blank"
                     rel="noopener noreferrer"
-                    data-ocid="nfc.primary_button"
                   >
                     <Button size="lg" className="group w-full gap-2 text-base">
                       Get My NFC Card
@@ -166,13 +164,11 @@ export default function NfcOfferPage() {
                   <div className="mb-6 inline-flex items-center justify-center rounded-full bg-primary/10 p-4">
                     <Smartphone className="h-8 w-8 text-primary" />
                   </div>
-                  <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-                    Bonus: Free SmartQR App Included
+                  <h2 className="mb-2 text-3xl font-bold tracking-tight sm:text-4xl">
+                    Bonus: Add an NFC Digital Card at a discount.
                   </h2>
                   <p className="mb-6 text-lg text-muted-foreground">
-                    Everyone gets access to the free SmartQR app, even if you
-                    don't use NFC. Create and share your digital contact card
-                    with QR codes on any device.
+                    Integrates with your SmartQR data.
                   </p>
                   <div className="mx-auto max-w-2xl space-y-3">
                     <div className="flex items-center justify-center gap-3 rounded-lg bg-background/50 p-4">
@@ -189,8 +185,17 @@ export default function NfcOfferPage() {
                         <Check className="h-4 w-4" />
                       </div>
                       <p className="text-left text-sm">
-                        <strong>Real-Time Updates:</strong> Change your info
-                        once, update everywhere instantly
+                        <strong>ADD the NFC My Card</strong> to use with NFC
+                        Taps.
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-center gap-3 rounded-lg bg-background/50 p-4">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary">
+                        <Check className="h-4 w-4" />
+                      </div>
+                      <p className="text-left text-sm">
+                        <strong>Real-Time Updates:</strong> Change your info any
+                        time, update your information instantly
                       </p>
                     </div>
                     <div className="flex items-center justify-center gap-3 rounded-lg bg-background/50 p-4">

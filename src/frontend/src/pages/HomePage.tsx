@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight, Mail, Phone, Share2, X } from "lucide-react";
 import { useState } from "react";
 
 export default function HomePage() {
@@ -46,16 +45,47 @@ export default function HomePage() {
             </div>
 
             {/* Product Visual */}
-            <div className="flex items-center justify-center">
-              <Card className="overflow-hidden border-2 shadow-2xl w-full max-w-lg">
-                <CardContent className="p-0">
+            <div className="flex flex-col items-center justify-center gap-6">
+              {/* Profile Picture */}
+              <div className="relative">
+                <div className="h-48 w-48 overflow-hidden rounded-full border-4 border-primary/20 shadow-2xl ring-4 ring-primary/10">
                   <img
-                    src="/assets/generated/smartqr-product-mockup.dim_800x600.png"
-                    alt="SmartQR Product"
-                    className="h-auto w-full object-cover"
+                    src="/assets/generated/profile-business-person-transparent.dim_400x400.png"
+                    alt="SmartQR User"
+                    className="h-full w-full object-cover"
                   />
-                </CardContent>
-              </Card>
+                </div>
+                {/* QR Code badge */}
+                <div className="absolute -bottom-4 -right-4 rounded-xl border-2 border-primary/20 bg-background p-1.5 shadow-lg">
+                  <img
+                    src="/assets/generated/smartqr-qrcode.dim_300x300.png"
+                    alt="SmartQR QR Code"
+                    className="h-16 w-16 rounded"
+                  />
+                </div>
+              </div>
+
+              {/* Icons row */}
+              <div className="flex items-center gap-6 mt-6">
+                <div className="flex flex-col items-center gap-1.5">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <Phone className="h-5 w-5" />
+                  </div>
+                  <span className="text-xs text-muted-foreground">Call</span>
+                </div>
+                <div className="flex flex-col items-center gap-1.5">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <Mail className="h-5 w-5" />
+                  </div>
+                  <span className="text-xs text-muted-foreground">Email</span>
+                </div>
+                <div className="flex flex-col items-center gap-1.5">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <Share2 className="h-5 w-5" />
+                  </div>
+                  <span className="text-xs text-muted-foreground">Share</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

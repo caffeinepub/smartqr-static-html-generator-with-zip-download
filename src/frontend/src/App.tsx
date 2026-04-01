@@ -10,6 +10,7 @@ import DownloadPage from "./pages/DownloadPage";
 import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
 import NfcOfferPage from "./pages/NfcOfferPage";
+import PrintCardPage from "./pages/PrintCardPage";
 import TikTokPromoPage from "./pages/TikTokPromoPage";
 
 const queryClient = new QueryClient();
@@ -48,12 +49,19 @@ const tiktokPromoRoute = createRoute({
   component: TikTokPromoPage,
 });
 
+const printCardRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/print-card",
+  component: PrintCardPage,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   landingRoute,
   nfcOfferRoute,
   downloadRoute,
   tiktokPromoRoute,
+  printCardRoute,
 ]);
 
 const router = createRouter({ routeTree });
