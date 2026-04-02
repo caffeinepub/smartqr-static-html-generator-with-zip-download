@@ -8,12 +8,24 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { useNavigate } from "@tanstack/react-router";
 import { ArrowRight, CreditCard, Sparkles, X, Zap } from "lucide-react";
 import { useState } from "react";
 
+const STRIPE_URL = "https://buy.stripe.com/fZu3cuakm61n6oM5JubMQ00";
+
+function openStripePopup() {
+  const w = 520;
+  const h = 700;
+  const left = Math.round(window.screenX + (window.outerWidth - w) / 2);
+  const top = Math.round(window.screenY + (window.outerHeight - h) / 2);
+  window.open(
+    STRIPE_URL,
+    "stripe_checkout",
+    `width=${w},height=${h},left=${left},top=${top},resizable=yes,scrollbars=yes`,
+  );
+}
+
 export default function LandingPage() {
-  const navigate = useNavigate();
   const [popupOpen, setPopupOpen] = useState(false);
 
   const features = [
@@ -115,15 +127,14 @@ export default function LandingPage() {
                         {feature.description}
                       </CardDescription>
                       {feature.cta && (
-                        <a
-                          href="https://buy.stripe.com/fZu3cuakm61n6oM5JubMQ00"
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <button
+                          type="button"
+                          onClick={openStripePopup}
                           className="mt-3 inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
                         >
                           Get NFC Card — $4.95
                           <ArrowRight className="h-3.5 w-3.5" />
-                        </a>
+                        </button>
                       )}
                     </CardContent>
                   </Card>
@@ -210,14 +221,14 @@ export default function LandingPage() {
                       Premium Upgrade
                     </Badge>
                     <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-                      Upgrade to NFC for just
+                      Upgrade to NFC Card
                     </h2>
                     <div className="mb-6 flex items-baseline gap-2">
                       <span className="text-5xl font-bold text-primary">
                         $4.95
                       </span>
                       <span className="text-lg text-muted-foreground">
-                        one-time
+                        covers shipping &amp; handling
                       </span>
                     </div>
                     <p className="text-lg text-muted-foreground">
@@ -246,10 +257,10 @@ export default function LandingPage() {
                     <Button
                       size="lg"
                       variant="default"
-                      onClick={() => navigate({ to: "/nfc-offer" })}
+                      onClick={openStripePopup}
                       className="group gap-2"
                     >
-                      View Special Offer
+                      Upgrade to NFC Card
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Button>
                   </div>

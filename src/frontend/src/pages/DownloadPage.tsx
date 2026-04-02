@@ -21,7 +21,7 @@ import {
 import { useState } from "react";
 
 // Version management - only latest version displayed
-const CURRENT_VERSION = 28;
+const CURRENT_VERSION = 31;
 
 interface FileItem {
   name: string;
@@ -78,6 +78,12 @@ export default function DownloadPage() {
       path: "/tiktok-promo-static.html",
       description:
         "Animated TikTok-style promo for SmartQR — screen-record to create your video",
+    },
+    {
+      name: "tiktok-promo2.html",
+      path: "/tiktok-promo2.html",
+      description:
+        "NEW Promo V2 — Fresh 6-scene sequence: hook, problem, solution reveal, how-it-works, value, CTA",
       featured: true,
     },
   ];
@@ -223,7 +229,7 @@ export default function DownloadPage() {
             </h1>
             <p className="text-lg text-muted-foreground md:text-xl">
               Latest versions of all HTML files, CSS stylesheet, JavaScript,
-              image assets, and TikTok promo — ready for deployment
+              image assets, and TikTok promos — ready for deployment
             </p>
           </div>
 
@@ -264,9 +270,9 @@ export default function DownloadPage() {
                 <div className="rounded-lg border border-cyan-500/30 bg-cyan-500/5 p-4">
                   <div className="mb-3 flex items-center gap-2">
                     <Video className="h-5 w-5 text-cyan-500" />
-                    <h3 className="font-medium">TikTok Promo</h3>
+                    <h3 className="font-medium">TikTok Promos</h3>
                     <span className="rounded-full bg-cyan-500/10 px-2 py-0.5 text-xs font-medium text-cyan-600">
-                      New in V22
+                      V2 New in V31
                     </span>
                   </div>
                   <div className="space-y-2">
@@ -277,7 +283,14 @@ export default function DownloadPage() {
                           size="sm"
                           variant="outline"
                           className="gap-2 border-cyan-500/30 text-cyan-600 hover:bg-cyan-500/10"
-                          onClick={() => window.open("/tiktok-promo", "_blank")}
+                          onClick={() =>
+                            window.open(
+                              file.name === "tiktok-promo2.html"
+                                ? "/tiktok-promo2"
+                                : "/tiktok-promo",
+                              "_blank",
+                            )
+                          }
                           data-ocid="download.link"
                         >
                           <ExternalLink className="h-3 w-3" />
@@ -381,7 +394,7 @@ export default function DownloadPage() {
                   Download All Files (V{CURRENT_VERSION})
                 </h3>
                 <p className="text-muted-foreground">
-                  Download all latest HTML, CSS, JavaScript, TikTok promo, and
+                  Download all latest HTML, CSS, JavaScript, TikTok promos, and
                   image files sequentially
                 </p>
               </div>
@@ -434,11 +447,8 @@ export default function DownloadPage() {
               </li>
               <li>4. Use relative paths in your HTML (no leading slash)</li>
               <li>
-                5. For the TikTok promo: open{" "}
-                <code className="rounded bg-muted px-1 py-0.5">
-                  tiktok-promo.html
-                </code>{" "}
-                in a browser and screen-record it
+                5. For the TikTok promos: open the HTML files in a browser and
+                screen-record them
               </li>
             </ol>
             <div className="mt-4 flex items-start gap-2 rounded-md bg-primary/10 p-3">

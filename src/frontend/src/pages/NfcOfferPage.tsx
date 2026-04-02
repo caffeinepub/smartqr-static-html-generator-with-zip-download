@@ -9,6 +9,20 @@ import {
   Sparkles,
 } from "lucide-react";
 
+const STRIPE_URL = "https://buy.stripe.com/fZu3cuakm61n6oM5JubMQ00";
+
+function openStripePopup() {
+  const w = 520;
+  const h = 700;
+  const left = Math.round(window.screenX + (window.outerWidth - w) / 2);
+  const top = Math.round(window.screenY + (window.outerHeight - h) / 2);
+  window.open(
+    STRIPE_URL,
+    "stripe_checkout",
+    `width=${w},height=${h},left=${left},top=${top},resizable=yes,scrollbars=yes`,
+  );
+}
+
 export default function NfcOfferPage() {
   return (
     <div className="relative">
@@ -137,16 +151,14 @@ export default function NfcOfferPage() {
                     </div>
                   </div>
 
-                  <a
-                    href="https://buy.stripe.com/fZu3cuakm61n6oM5JubMQ00"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Button
+                    size="lg"
+                    className="group w-full gap-2 text-base"
+                    onClick={openStripePopup}
                   >
-                    <Button size="lg" className="group w-full gap-2 text-base">
-                      Get My NFC Card
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  </a>
+                    Get My NFC Card
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Button>
                 </div>
               </div>
             </Card>
